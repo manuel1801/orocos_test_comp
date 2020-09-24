@@ -47,7 +47,6 @@ void Test_Component::updateHook()
         RTT::log(RTT::Warning)<< "var: "<< var << RTT::endlog();
     }
 
-
     x_current = x_current * 0.01;
     q_current = q_current * 0.01;
 

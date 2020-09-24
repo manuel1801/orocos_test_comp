@@ -1,0 +1,7 @@
+.tb_history
+CMakeLists.txt.user
+Deployer.ior
+build/
+orocos.log
+orocos_test_comp.kdev4
+start_components.ops

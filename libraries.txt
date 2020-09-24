@@ -1,0 +1,5 @@
+https://github.com/ros/urdf
+https://github.com/orocos/orocos_kinematics_dynamics
+https://github.com/ros/kdl_parser
+http://www.reflexxes.ws/software/typeiirml/v1.2.6/docs/page__download_instructions.html
+

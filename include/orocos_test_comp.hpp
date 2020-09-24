@@ -97,17 +97,7 @@ private:
     rstrt::geometry::Pose pose;
     rstrt::kinematics::JointAngles joint_angles;
 
-
-
     double getSimulationTime();
-    void getComputationalTime();
-    double time;
-    double computationalTime;
-    void compTimeVectorUpdate();
-    std::vector<float> computationalTimeVector;
-
-    std::string input_file;
-    
     
 };
 

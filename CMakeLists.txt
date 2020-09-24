@@ -1,5 +1,4 @@
 
-
 cmake_minimum_required(VERSION 2.8.3)
  
 project(orocos_test_comp)
@@ -9,14 +8,13 @@ set (CMAKE_CXX_STANDARD 11)
 set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "" FORCE)
 SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-O3")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON) 
- 
+
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 find_package(OROCOS-RTT REQUIRED ${RTT_HINTS})
 if (NOT OROCOS-RTT_FOUND)
   message (FATAL_ERROR "\nCould not find Orocos. Please use the shell command\n 'source orocos_toolchain/env.sh' and then run cmake again.")
 endif()
-
 
 find_package(RST-RT REQUIRED)
 IF (RST-RT_FOUND)
@@ -44,14 +42,6 @@ IF (Boost_FOUND)
         link_directories(${Boost_LIBRARY_DIR})
 ENDIF()
 
-find_package(urdfdom REQUIRED)
-IF (urdfdom_FOUND)
-        message(STATUS "urdfdom found. Version: ${Boost_VERSION}")
-        include_directories(BEFORE SYSTEM ${urdfdom_INCLUDE_DIRS})
-        add_definitions(${urdfdom_CFLAGS})
-        link_directories(${urdfdom_LIBRARY_DIR})
-ENDIF()
-
 find_package(Eigen3)
 IF (Eigen3_FOUND)
     message(STATUS "Eigen3 found. Version: ${Eigen3_VERSION}")
@@ -69,7 +59,6 @@ include_directories(${kdl_parser_INCLUDE_DIRS})
 find_library(trac_ik trac_ik)
 
 
-
 find_library(ref reflexxes)
 IF (ref)
     message(STATUS "Reflexxes found")
@@ -85,18 +74,11 @@ find_library(LIBNLOPT_LIBRARIES
              HINTS /usr/lib/ /usr/x86_64-linux-gnu/
              PATH_SUFFIXES lib)
 
-find_library(PORT PORT)
-IF (PORT)
-    message(STATUS "LibPORT found")
-ENDIF()
-
-
 include(${OROCOS-RTT_USE_FILE_PATH}/UseOROCOS-RTT.cmake)
 
 orocos_component(${CMAKE_PROJECT_NAME} 	${PROJECT_SOURCE_DIR}/include/orocos_test_comp.hpp 
 										${PROJECT_SOURCE_DIR}/src/orocos_test_comp.cpp) 
 
-
-target_link_libraries(${CMAKE_PROJECT_NAME} ${RST-RT_LIBRARIES} ${orocos_kdl_LIBRARIES} ${ref} ${PORT}
-${Boost_LIBRARIES} ${urdfdom_LIBRARIES} ${Eigen3_LIBRARIES} ${LIBNLOPT_LIBRARIES})
+target_link_libraries(${CMAKE_PROJECT_NAME} ${RST-RT_LIBRARIES} ${orocos_kdl_LIBRARIES} ${ref}
+${Boost_LIBRARIES} ${urdfdom_LIBRARIES} ${Eigen3_LIBRARIES} ${LIBNLOPT_LIBRARIES} ${trac_ik} ${urdf} ${PkgConfig} ${kdl_parser} ${LIBNLOPT_LIBRARIES})
 orocos_generate_package()
