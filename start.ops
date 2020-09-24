@@ -1,0 +1,20 @@
+
+import("/usr/local/lib/orocos/gnulinux/orocos_test_comp/liborocos_test_comp-gnulinux.so")
+
+loadComponent("TC","Test_Component")
+setActivityOnCPU("TC",0.004,50,ORO_SCHED_RT,2)
+
+#  calls the configureHook()
+TC.configure
+
+# to connect the ports with the ports from another component we use:
+# var ConnPolicy cn
+# connect("TC.input_int_port","Other_comp.output_port",cn)
+# connect("TC.input_double_port", "Other_comp.output_port",cn)
+# connect("TC.input_string_port", "Other_comp.output_port",cn)
+# connect("TC.input_bool_port", "Other_comp.output_port",cn)
+
+
+#  calls the startHook()
+TC.start
+
